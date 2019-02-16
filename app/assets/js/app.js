@@ -1,6 +1,6 @@
 Vue.config.devtools = true;
 var formId = window.location.pathname.match(/\/form-(\d*)\//)[1];
-var apiEndpoint = `/api/form-${formId}.json`;
+var apiEndpoint = `../../api/form-${formId}.json`;
 var app = new Vue({
   el: '#app',
   computed: {
