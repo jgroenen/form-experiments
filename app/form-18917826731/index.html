@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<style>
+  .form-builder-vraag { background: #d4d2ff; padding: 10px; font-family: Arial; margin: 10px }
+  .form-builder-vraag label { display: inline-block; background: #74729d; padding: 10px; font-size: 1.4em; color: #fff; cursor: pointer }
+  .form-builder-vraag input[type=text] { font-size: 1em; padding: 0.1em }
+  .form-builder-vraag.ja-nee-vraag {}
+  .form-builder-vraag.open-vraag {}
+</style>
+
+<div id="app">
+
+  <div v-for="question in questions">
+
+    <div v-if="question.type === 'ja-nee-vraag'">
+
+      <div class="form-builder-vraag ja-nee-vraag">
+        <h3>{{ question.wet }}</h3>
+        <h2>{{ question.text }}</h2>
+        <div>
+          <label><input type="radio" :name="question.id" value="ja" v-model="question.antwoord">Ja</label>
+          <label><input type="radio" :name="question.id" value="nee" v-model="question.antwoord">Nee</label>
+        </div>
+      </div>
+
+    </div>
+
+    <div v-if="question.type === 'ja-nee-nvt-vraag'">
+
+      <div class="form-builder-vraag ja-nee-vraag">
+        <h3>{{ question.wet }}</h3>
+        <h2>{{ question.text }}</h2>
+        <div>
+          <label><input type="radio" :name="question.id" value="ja" v-model="question.antwoord">Ja</label>
+          <label><input type="radio" :name="question.id" value="nee" v-model="question.antwoord">Nee</label>
+          <label><input type="radio" :name="question.id" value="nvt" v-model="question.antwoord">NVT</label>
+        </div>
+      </div>
+
+    </div>
+
+    <div v-if="question.type === 'open-vraag'">
+
+      <div class="form-builder-vraag open-vraag">
+        <h3>{{ question.wet }}</h3>
+        <h2>{{ question.text }}</h2>
+        <div>
+          <label><input type="text" :name="question.id" v-model="question.antwoord"></label>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+  Vue.config.devtools = true;
+  var app = new Vue({
+    el: '#app',
+    computed: {
+      test2: function (vue) {
+        return vue.test + "---";
+      }
+    },
+    mounted() {
+      if (localStorage.getItem("questions")) {
+        this.questions = JSON.parse(localStorage.getItem("questions"));
+      }
+    },
+    watch: {
+      questions: {
+        handler() {
+          localStorage.setItem("questions", JSON.stringify(this.questions));
+        },
+        deep: true
+      }
+    },
+    data: {
+      questions: [
+        {
+          id: 1,
+          type: "ja-nee-vraag",
+          wet: "artikel 12a+b",
+          text: "zijn de brandgangen minstens 1 meter breed?",
+          antwoord: ""
+        },
+        {
+          id: 2,
+          type: "open-vraag",
+          wet: "artikel 12a+b",
+          text: "opmerkngen over posters?",
+          antwoord: ""
+        }
+      ]
+    }
+  });
+</script>
+
+</body>
+</html>
