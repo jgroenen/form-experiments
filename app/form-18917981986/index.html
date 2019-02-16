@@ -10,11 +10,9 @@
 <body>
 
 <div id="app">
-
   <div v-for="question in questions">
 
     <div v-if="question.type === 'ja-nee-vraag'">
-
       <div class="form-builder-vraag ja-nee-vraag">
         <h3>{{ question.wet }}</h3>
         <h2>{{ question.text }}</h2>
@@ -23,11 +21,9 @@
           <label><input type="radio" :name="question.id" value="nee" v-model="question.antwoord">Nee</label>
         </div>
       </div>
-
     </div>
 
     <div v-if="question.type === 'ja-nee-nvt-vraag'">
-
       <div class="form-builder-vraag ja-nee-vraag">
         <h3>{{ question.wet }}</h3>
         <h2>{{ question.text }}</h2>
@@ -37,11 +33,9 @@
           <label><input type="radio" :name="question.id" value="nvt" v-model="question.antwoord">NVT</label>
         </div>
       </div>
-
     </div>
 
     <div v-if="question.type === 'open-vraag'">
-
       <div class="form-builder-vraag open-vraag">
         <h3>{{ question.wet }}</h3>
         <h2>{{ question.text }}</h2>
@@ -49,11 +43,9 @@
           <label><input type="text" :name="question.id" v-model="question.antwoord"></label>
         </div>
       </div>
-
     </div>
 
   </div>
-
 </div>
 
 <script src="../assets/js/app.js"></script>

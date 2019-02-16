@@ -1,6 +1,7 @@
 Vue.config.devtools = true;
 var formId = window.location.pathname.match(/\/form-(\d*)\//)[1];
-var apiEndpoint = `../../api/form-${formId}.json`;
+var apiRoot = '../../api';
+var apiEndpoint = `${apiRoot}/form-${formId}.json`;
 var app = new Vue({
   el: '#app',
   computed: {
@@ -9,20 +10,21 @@ var app = new Vue({
     }
   },
   mounted() {
-    //if (localStorage.getItem("questions")) {
-    //  this.questions = JSON.parse(localStorage.getItem("questions"));
-    //}
-    axios
-      .get(apiEndpoint)
-      .then(response => this.questions = response.data.questions)
+    if (localStorage.getItem(`${formId}-questions`)) {
+      this.questions = JSON.parse(localStorage.getItem(`${formId}-questions`));
+    } else {
+      axios
+        .get(apiEndpoint)
+        .then(response => this.questions = response.data.questions);
+    }
   },
   watch: {
     questions: {
       handler() {
-        localStorage.setItem("questions", JSON.stringify(this.questions));
+        localStorage.setItem(`${formId}-questions`, JSON.stringify(this.questions));
         axios
           .post(apiEndpoint)
-          .then(response => console.log(response))
+          .then(response => console.log(response));
       },
       deep: true
     }

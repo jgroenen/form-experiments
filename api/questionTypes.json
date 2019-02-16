@@ -1,0 +1,20 @@
+{
+  "ja-nee-vraag": {
+    "type": "ja-nee-vraag",
+    "wet": "",
+    "text": "",
+    "antwoord": ""
+  },
+  "ja-nee-nvt-vraag": {
+    "type": "ja-nee-nvt-vraag",
+    "wet": "",
+    "text": "",
+    "antwoord": ""
+  },
+  "open-vraag": {
+    "type": "open-vraag",
+    "wet": "",
+    "text": "",
+    "antwoord": ""
+  }
+}
