@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name='viewport' content='width=320,initial-scale=1,user-scalable=0'>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-
-<style>
-  .form-builder-vraag { background: #d4d2ff; padding: 10px; font-family: Arial; margin: 10px }
-  .form-builder-vraag label { display: inline-block; background: #74729d; padding: 10px; font-size: 1.4em; color: #fff; cursor: pointer }
-  .form-builder-vraag input[type=text] { font-size: 1em; padding: 0.1em }
-  .form-builder-vraag.ja-nee-vraag {}
-  .form-builder-vraag.open-vraag {}
-</style>
 
 <div id="app">
 
@@ -60,10 +55,10 @@
   </div>
 
 </div>
-
-<script src="https://unpkg.com/vue"></script>
 <script>
   Vue.config.devtools = true;
+  var formId = window.location.pathname.match(/\/form-(.*)\//)[1];
+  var apiEndpoint = `/api/form-${formId}.json`;
   var app = new Vue({
     el: '#app',
     computed: {
@@ -72,70 +67,26 @@
       }
     },
     mounted() {
-      if (localStorage.getItem("questions")) {
-        this.questions = JSON.parse(localStorage.getItem("questions"));
-      }
+      //if (localStorage.getItem("questions")) {
+      //  this.questions = JSON.parse(localStorage.getItem("questions"));
+      //}
+      axios
+        .get(apiEndpoint)
+        .then(response => this.questions = response.data.questions)
     },
     watch: {
       questions: {
         handler() {
           localStorage.setItem("questions", JSON.stringify(this.questions));
+          axios
+            .post(apiEndpoint)
+            .then(response => console.log(response))
         },
         deep: true
       }
     },
     data: {
-      questions: [
-        {
-          id: 1,
-          type: "ja-nee-vraag",
-          wet: "artikel 12a+b",
-          text: "zijn de brandgangen minstens 1 meter breed?",
-          antwoord: ""
-        },
-        {
-          id: 2,
-          type: "open-vraag",
-          wet: "artikel 12a+b",
-          text: "opmerkngen over posters?",
-          antwoord: ""
-        },
-        {
-          id: 3,
-          type: "ja-nee-vraag",
-          wet: "artikel 12a+b",
-          text: "zijn er minstens twee branduitgangen?",
-          antwoord: ""
-        },
-        {
-          id: 4,
-          type: "ja-nee-vraag",
-          wet: "artikel 12a+b",
-          text: "zijn er minstens twee branduitgangen?",
-          antwoord: ""
-        },
-        {
-          id: 5,
-          type: "ja-nee-nvt-vraag",
-          wet: "artikel 12a+b",
-          text: "zijn er minstens twee branduitgangen?",
-          antwoord: ""
-        },
-        {
-          id: 6,
-          type: "ja-nee-nvt-vraag",
-          wet: "artikel 12a+b",
-          text: "zijn er minstens twee branduitgangen?",
-          antwoord: ""
-        },
-        {
-          id: 7,
-          type: "ja-nee-vraag",
-          wet: "artikel 12a+b",
-          text: "zijn er minstens twee branduitgangen?",
-          antwoord: ""
-        }
-      ]
+      questions: []
     }
   });
 </script>

@@ -1,0 +1,5 @@
+.form-builder-vraag { background: #d4d2ff; padding: 10px; font-family: Arial; margin: 20px; border-radius: 4px; box-shadow: 0 2px 2px #aaa }
+.form-builder-vraag label { display: inline-block; background: #74729d; padding: 10px; font-size: 1.4em; color: #fff; cursor: pointer }
+.form-builder-vraag input[type=text] { font-size: 1em; padding: 0.1em }
+.form-builder-vraag.ja-nee-vraag {}
+.form-builder-vraag.open-vraag {}

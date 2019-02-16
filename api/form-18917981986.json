@@ -1,0 +1,53 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "ja-nee-vraag",
+      "wet": "artikel 12a+b",
+      "text": "zijn de brandgangen minstens 1 meter breed?",
+      "antwoord": ""
+    },
+    {
+      "id": 2,
+      "type": "open-vraag",
+      "wet": "artikel 12a+b",
+      "text": "opmerkngen over posters?",
+      "antwoord": ""
+    },
+    {
+      "id": 3,
+      "type": "ja-nee-vraag",
+      "wet": "artikel 12a+b",
+      "text": "zijn er minstens twee branduitgangen?",
+      "antwoord": ""
+    },
+    {
+      "id": 4,
+      "type": "ja-nee-vraag",
+      "wet": "artikel 12a+b",
+      "text": "zijn er minstens twee branduitgangen?",
+      "antwoord": ""
+    },
+    {
+      "id": 5,
+      "type": "ja-nee-nvt-vraag",
+      "wet": "artikel 12a+b",
+      "text": "zijn er minstens twee branduitgangen?",
+      "antwoord": ""
+    },
+    {
+      "id": 6,
+      "type": "ja-nee-nvt-vraag",
+      "wet": "artikel 12a+b",
+      "text": "zijn er minstens twee branduitgangen?",
+      "antwoord": ""
+    },
+    {
+      "id": 7,
+      "type": "ja-nee-vraag",
+      "wet": "artikel 12a+b",
+      "text": "zijn er minstens twee branduitgangen?",
+      "antwoord": ""
+    }
+  ]
+}
